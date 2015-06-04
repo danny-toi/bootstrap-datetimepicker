@@ -1821,6 +1821,10 @@
             return picker;
         };
 
+        picker.viewDate = function () {
+            return viewDate.clone();
+        };
+
         picker.datepickerInput = function (datepickerInput) {
             if (arguments.length === 0) {
                 return options.datepickerInput;
