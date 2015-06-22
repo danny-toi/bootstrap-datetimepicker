@@ -832,9 +832,15 @@
                     var day = viewDate.clone();
                     if ($(e.target).is('.old')) {
                         day.subtract(1, 'M');
+                        if (options.disableAnotherMonth) {
+                            return;
+                        }
                     }
                     if ($(e.target).is('.new')) {
                         day.add(1, 'M');
+                        if (options.disableAnotherMonth) {
+                            return;
+                        }
                     }
                     setValue(day.date(parseInt($(e.target).text(), 10)));
                     if (!hasTime() && !options.keepOpen && !options.inline) {
@@ -1367,6 +1373,11 @@
             options.enabledDates = indexGivenDates(dates);
             options.disabledDates = false;
             update();
+            return picker;
+        };
+
+        picker.disableAnotherMonth = function (disable) {
+            options.disableAnotherMonth = disable;
             return picker;
         };
 
@@ -1921,6 +1932,7 @@
         defaultDate: false,
         disabledDates: false,
         enabledDates: false,
+        disableAnotherMonth: false,
         icons: {
             time: 'glyphicon glyphicon-time',
             date: 'glyphicon glyphicon-calendar',
