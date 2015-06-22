@@ -1821,8 +1821,13 @@
             return picker;
         };
 
-        picker.viewDate = function () {
-            return viewDate.clone();
+        picker.viewDate = function (date) {
+            if (typeof date !== 'undefined') {
+                viewDate = date.clone();
+                fillDate();
+            } else {
+                return viewDate.clone();
+            }
         };
 
         picker.datepickerInput = function (datepickerInput) {
