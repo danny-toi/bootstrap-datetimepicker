@@ -687,9 +687,6 @@
                     if (currentDate.isAfter(viewDate, 'M')) {
                         clsName += ' new';
                     }
-                    if (currentDate.isSame(date, 'd') && !unset) {
-                        clsName += ' active';
-                    }
                     if (!isValid(currentDate, 'd')) {
                         clsName += ' disabled';
                     }
@@ -698,6 +695,21 @@
                     }
                     if (currentDate.day() === 0 || currentDate.day() === 6) {
                         clsName += ' weekend';
+                    }
+                    if (options.dateRange[0]) {
+                        if (options.dateRange[1]) {
+                            if (currentDate.isBetween(options.dateRange[0], options.dateRange[1], 'd') ||
+                                currentDate.isSame(options.dateRange[0], 'd') ||
+                                currentDate.isSame(options.dateRange[1], 'd')) {
+                                clsName += ' active';
+                            }
+                        } else if (currentDate.isAfter(options.dateRange[0], 'd') || currentDate.isSame(options.dateRange[0], 'd')) {
+                            clsName += ' active';
+                        }
+                    } else {
+                        if (currentDate.isSame(date, 'd') && !unset) {
+                            clsName += ' active';
+                        }
                     }
                     row.append('<td data-action="selectDay" data-day="' + currentDate.format('L') + '" class="day' + clsName + '">' + currentDate.date() + '</td>');
                     currentDate.add(1, 'd');
@@ -1572,6 +1584,12 @@
             return picker;
         };
 
+        picker.dateRange = function (range) {
+            options.dateRange = range;
+            update();
+            return picker;
+        };
+
         picker.daysOfWeekDisabled = function (daysOfWeekDisabled) {
             if (arguments.length === 0) {
                 return options.daysOfWeekDisabled.splice(0);
@@ -2320,6 +2338,7 @@
         disabledDates: false,
         enabledDates: false,
         disableAnotherMonth: false,
+        dateRange: [null, null],
         icons: {
             time: 'glyphicon glyphicon-time',
             date: 'glyphicon glyphicon-calendar',
