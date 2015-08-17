@@ -2117,14 +2117,14 @@
             return picker;
         };
 
-        picker.viewDate = function (date) {
+        /*picker.viewDate = function (date) {
             if (typeof date !== 'undefined') {
                 viewDate = date.clone();
                 fillDate();
             } else {
                 return viewDate.clone();
             }
-        };
+        };*/
 
         picker.datepickerInput = function (datepickerInput) {
             if (arguments.length === 0) {
@@ -2280,7 +2280,8 @@
             }
 
             viewDate = parseInputDate(newDate);
-            viewUpdate();
+            fillDate();
+            //viewUpdate();
             return picker;
         };
 
