@@ -5,11 +5,13 @@
 
 ## [View the manual and demos](http://eonasdan.github.io/bootstrap-datetimepicker/)
 
-# v4.14.30
+# v4.15.35
 
 Is the current stable release. The latest and greatest changes are available from the [development branch](https://github.com/Eonasdan/bootstrap-datetimepicker/tree/development)
 
 # Version 5
+
+IMPORANT! The Nuget packages will be depreciated in this release. Moving forward, Asp.Net/Nuget will **NOT** be delivering content packages like this one and you will need to use bower. See [this issue for more]( https://github.com/Eonasdan/bootstrap-datetimepicker/issues/1128)
 
 v5 is [in planning](https://github.com/Eonasdan/bootstrap-datetimepicker/issues/841). We welcome your suggestions.
 
